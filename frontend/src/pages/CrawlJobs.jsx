@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import API_URL from '../config/api';
 import { AuthContext } from '../context/AuthContext';
 import Sidebar from '../components/Sidebar';
 
@@ -14,7 +15,7 @@ const CrawlJobs = () => {
 
   useEffect(() => {
     if (token) {
-      fetch(`http://localhost:5000/api/crawl/jobs?page=${jobPage}&limit=10`, {
+      fetch(`${API_URL}/api/crawl/jobs?page=${jobPage}&limit=10`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -46,7 +47,7 @@ const CrawlJobs = () => {
     if (!jobDetails[jobId]) {
       setLoadingDetails(true);
       try {
-        const response = await fetch(`http://localhost:5000/api/crawl/${jobId}`, {
+        const response = await fetch(`${API_URL}/api/crawl/${jobId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

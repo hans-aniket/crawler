@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import API_URL from '../config/api';
 import Sidebar from '../components/Sidebar';
 import { AuthContext } from '../context/AuthContext';
 
@@ -11,7 +12,7 @@ const Analytics = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/crawl/analytics', {
+        const response = await fetch(`${API_URL}/api/crawl/analytics`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

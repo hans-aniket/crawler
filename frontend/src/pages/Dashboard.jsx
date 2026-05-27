@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import API_URL from '../config/api';
 import { AuthContext } from '../context/AuthContext';
 import Sidebar from '../components/Sidebar';
 
@@ -25,7 +26,7 @@ const Dashboard = () => {
     if (crawlJob && (crawlJob.status === 'pending' || crawlJob.status === 'running')) {
       interval = setInterval(async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/crawl/${crawlJob.jobId}`, {
+          const response = await fetch(`${API_URL}/api/crawl/${crawlJob.jobId}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -71,7 +72,7 @@ const Dashboard = () => {
     setCrawlJob(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/crawl', {
+      const response = await fetch(`${API_URL}/api/crawl`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +106,7 @@ const Dashboard = () => {
     setSearchPage(page);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/search?q=${encodeURIComponent(searchQuery)}&page=${page}&limit=5`, {
+      const response = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(searchQuery)}&page=${page}&limit=5`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
