@@ -1,0 +1,2 @@
+need to add search for every crawl job done
+need to check for different domains, edge cases, tests, etc
